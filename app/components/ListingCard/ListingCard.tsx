@@ -17,11 +17,11 @@ const ListingCard = (props: Props) => {
           alt={""}
         />
       </div>
-      <div className="flex justify-between"></div>
+      
 
       {/* Property Details */}
       <div
-        className="grid text-[15px]"
+        className="grid text-[15px] mt-3 w-full"
         style={{
           gridTemplateColumns: "273.453px 41.7969px",
           gridTemplateRows: "19px 19px 19px 25px",
@@ -53,7 +53,7 @@ const ListingCard = (props: Props) => {
 
         <span
           aria-label="5.0 out of 5 average rating"
-          className="grid col-end-[-1] col-start-[-2]"
+          className="flex items-center col-end-[-1] col-start-[-2] justify-self-end row-end-auto row-start-1"
           role="img"
         >
           <span className="text-black dark:text-white">
@@ -76,7 +76,7 @@ const ListingCard = (props: Props) => {
               ></path>
             </svg>
           </span>
-          <span aria-hidden="true" className="text-black dark:text-white">
+          <span aria-hidden="true" className="text-black dark:text-white ml-1">
             5.0
           </span>
         </span>
