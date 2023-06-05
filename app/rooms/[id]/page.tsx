@@ -2,10 +2,19 @@ import { notFound } from "next/navigation";
 // import Balancer from "react-wrap-balancer";
 import Link from "next/link";
 import { ApiResponse } from '@/app/service/http/api.interface';
-import { RoomInfo } from '@/app/model/listing.model';
+import { RoomInfo, RoomInfoBasic } from '@/app/model/listing.model';
+
+
+export async function generateStaticParams() {
+  const rooms: ApiResponse<RoomInfoBasic[]> = await fetch('http://localhost:3000/api/listings').then((res) => res.json());
+ 
+  return rooms.data.map((room) => ({
+    id: room.id,
+  }));
+}
 
 async function getData(id: string): Promise<ApiResponse<RoomInfo>> {
-  const res = await fetch(`http://localhost:3000/api/listings/room/${id}`);
+  const res = await fetch(`http://localhost:3000/api/listings/${id}?id=${id}`);
 
   if (!res.ok) {
     // Activate the closest `error.ts` Error Boundary
@@ -15,14 +24,14 @@ async function getData(id: string): Promise<ApiResponse<RoomInfo>> {
   return res.json();
 }
 
-export default async function ItemPage() {
+export default async function RoomPage({ params }: { params: { id: string } }) {
   // const router = useRouter();
   // const id: string = (router.query.id as string) ?? "";
-  const id = "123";
+  const {id} = params;
   // const { data, isLoading, isError } = useRoom(id);
   // const post = data && data.data;
 
-  const resp = await getData("22995081");
+  const resp = await getData(id);
   const { data } = resp;
 
   if (!data) {

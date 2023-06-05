@@ -1,5 +1,6 @@
-import { ListingModel, RoomInfoBasic } from "@/app/model/listing.model";
+import { RoomInfoBasic } from "@/app/model/listing.model";
 import ListingService from '@/app/service/listing.service';
+import { Route } from 'next';
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,7 +9,7 @@ type Props = {
 };
 
 const ListingCard = ({ data }: Props) => {
-  const roomUrl = ListingService.getRoomRoute(data);
+  const roomUrl = ListingService.getRoomRoute(data) as Route; // https://nextjs.org/docs/app/building-your-application/configuring/typescript#typescript-plugin
   return (
     <Link href={roomUrl}>
       <div className="flex flex-col items-center justify-center w-full h-full">

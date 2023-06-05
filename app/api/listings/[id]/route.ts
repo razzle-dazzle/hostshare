@@ -6,12 +6,12 @@ import ListingService from "@/app/service/listing.service";
  */
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
+  
   const id = searchParams.get('id');
   if (!id) {
     return NextResponse.json({ data: null });
   }
   
-  // const id = "44119404";
-  const data = ListingService.getRoomById(id)
+  const data = await ListingService.getRoomById(id)
   return NextResponse.json({ data });
 }
