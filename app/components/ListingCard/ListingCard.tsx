@@ -1,14 +1,16 @@
-import { ListingModel, RoomInfoBasic } from '@/app/model/listing.model';
+import { ListingModel, RoomInfoBasic } from "@/app/model/listing.model";
+import ListingService from '@/app/service/listing.service';
 import Image from "next/image";
-import Link from 'next/link';
+import Link from "next/link";
 
 type Props = {
   data: RoomInfoBasic;
 };
 
-const ListingCard = ({data}: Props) => {
+const ListingCard = ({ data }: Props) => {
+  const roomUrl = ListingService.getRoomRoute(data);
   return (
-    <Link href={"/rooms/123"}>
+    <Link href={roomUrl}>
       <div className="flex flex-col items-center justify-center w-full h-full">
         <div className="w-[100%] h-[302px] relative">
           <Image
@@ -23,7 +25,6 @@ const ListingCard = ({data}: Props) => {
             alt={""}
           />
         </div>
-        
 
         {/* Property Details */}
         <div
@@ -53,7 +54,10 @@ const ListingCard = ({data}: Props) => {
             //   // "--pricing-guest-display-price-alignment: flex-start; --pricing-guest-display-price-flex-wrap: wrap; --pricing-guest-primary-line-font-size: 15px; --pricing-guest-primary-line-line-height: 19px; --pricing-guest-primary-line-unit-price-font-weight: var(--jx-zk-pv); --pricing-guest-primary-line-trailing-content-font-size: 14px; --pricing-guest-secondary-line-font-size: 15px; --pricing-guest-secondary-line-line-height: 19px; --pricing-guest-secondary-line-color: #717171; --pricing-guest-explanation-disclaimer-font-size: 14px; --pricing-guest-explanation-disclaimer-line-height: 18px; --pricing-guest-primary-line-strikethrough-price-font-weight: 600; --pricing-guest-primary-line-qualifier-font-size: 15px; --pricing-guest-primary-line-qualifier-line-height: 19px;"
             // }
             >
-              <span className="text-black dark:text-white">{data.currency.symbol}{data.price} per night</span>
+              <span className="text-black dark:text-white">
+                {data.currency.symbol}
+                {data.price} per night
+              </span>
             </div>
           </div>
 
@@ -82,7 +86,10 @@ const ListingCard = ({data}: Props) => {
                 ></path>
               </svg>
             </span>
-            <span aria-hidden="true" className="text-black dark:text-white ml-1">
+            <span
+              aria-hidden="true"
+              className="text-black dark:text-white ml-1"
+            >
               {data.ratings.value}
             </span>
           </span>

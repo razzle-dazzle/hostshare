@@ -85,6 +85,11 @@ class ListingService {
     const categories = parsed.categories ?? [];
     return categories;
   }
+
+  /** Build the URL route for the room listing item */
+  getRoomRoute(room: RoomInfoBasic): string {
+    return `/rooms/${room.id}`;
+  }
 }
 
 const myListingService = new ListingService();

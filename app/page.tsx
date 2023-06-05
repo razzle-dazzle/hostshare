@@ -1,6 +1,6 @@
 import ListingCard from "./components/ListingCard";
 import ListingGrid from "./components/ListingGrid";
-import { ListingModel, RoomInfoBasic } from "./model/listing.model";
+import { RoomInfoBasic } from "./model/listing.model";
 import { ApiResponse } from "./service/http/api.interface";
 
 async function getData(): Promise<ApiResponse<RoomInfoBasic[]>> {
@@ -15,8 +15,12 @@ async function getData(): Promise<ApiResponse<RoomInfoBasic[]>> {
 }
 
 export default async function Home() {
-  const { data: data } = await getData();
+  const resp = await getData();
+  const { data } = resp;
 
+  if (!data || data.length === 0) {
+    <div>No data!</div>
+  }
   return (
     <div className="container">
       <ListingGrid>
