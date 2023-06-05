@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import ThemeSwitch from "../ThemeSwitch";
 import { useTheme } from "@wits/next-themes";
+import { DatePickerWithRange } from '../Shadcn/DatePicker';
 
 export default function Navbar() {
   return (
@@ -24,7 +25,7 @@ export default function Navbar() {
             />
           </div>
         </Link>
-        <div>Date picker</div>
+        <DatePickerWithRange></DatePickerWithRange>
         <div className="flex flex-row justify-center md:justify-end items-center max-w-full">
           <div className="text-black dark:text-white">Airbnb your home</div>
           <div className="text-black dark:text-white">Globe</div>
