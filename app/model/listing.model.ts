@@ -1,12 +1,18 @@
 interface Image {
+  /** Image Absolute URL */
   url: string;
+  /** Width in px */
   width: number;
+  /** Height in px */
   height: number;
+  /** Like image/jpeg */
   mimeType: string;
-  orientation: "landscape" | "portrait";
+  /** Photo orientation */
+  orientation: "landscape" | "portrait" | "square";
   /** Like 1.3333333333333333 */
   aspectRatio: number;
-  type: "main" | "photo" | string;
+  /** Like "photo", "avatar"... */
+  type: string;
 }
 
 interface Details {
@@ -69,19 +75,28 @@ interface Ratings {
   guestSatisfactionOverall: number;
 }
 
-interface RoomInfo {
+export interface RoomInfo {
+  /** Room ID, like "33747689" */
+  id: string;
   /** Like "home" */
   type: string;
+  /** List of all the photos */
   images: Image[];
-  details: Details;
-  description: string;
   mainImage: Image;
-  maxGuestCapacity: number;
-  amenities: Amenities;
+  details: Details;
   /** Like "Beautiful Bedroom in West LA Architectural Gem" */
   title: string;
-  /** Like "33747689" */
-  id: string;
+  /** The long description of the listing */
+  description: string;
+
+  maxGuestCapacity: number;
+  host: {
+    /** Ex. Natalie And Scott */
+    name: string;
+    avatar: Image;
+    isSuperhost: boolean;
+  };
+  amenities: Amenities;
   location: Location;
   ratings: Ratings;
   visibleReviewCount: number;
@@ -102,6 +117,9 @@ interface RoomInfo {
     count: number;
   };
 }
+
+/** This is all the info that a card needs on the index page */
+export type RoomInfoBasic = Pick<RoomInfo, "id" | "images" | "mainImage" | "location" | "ratings" | "price" | "currency">;
 
 export interface Categories {
   /** Ex. "8678" */

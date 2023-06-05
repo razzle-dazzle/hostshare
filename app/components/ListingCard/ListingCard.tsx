@@ -1,24 +1,24 @@
-import { ListingModel } from '@/app/model/listing.model';
+import { ListingModel, RoomInfoBasic } from '@/app/model/listing.model';
 import Image from "next/image";
 import Link from 'next/link';
 
 type Props = {
-  item?: ListingModel;
+  data: RoomInfoBasic;
 };
 
-const ListingCard = (props: Props) => {
+const ListingCard = ({data}: Props) => {
   return (
     <Link href={"/rooms/123"}>
       <div className="flex flex-col items-center justify-center w-full h-full">
         <div className="w-[100%] h-[302px] relative">
           <Image
-            src={"/test.jpg"}
+            src={data.mainImage.url}
             fill={true}
             sizes="(max-width: 500px) 100vw, 120px"
             style={{
               objectFit: "cover",
               borderRadius: 12,
-              aspectRatio: 20 / 19,
+              aspectRatio: data.mainImage.aspectRatio,
             }}
             alt={""}
           />
@@ -39,7 +39,7 @@ const ListingCard = (props: Props) => {
           }}
         >
           <div className="font-semibold text-[#222222] dark:text-white text-[15px]">
-            Chewelah, Washington
+            {data.location.city}, {data.location.country.title}
           </div>
           <div className="grid col-end-[-1] col-start-1">
             <span className="text-black dark:text-white">84 miles away</span>
@@ -53,7 +53,7 @@ const ListingCard = (props: Props) => {
             //   // "--pricing-guest-display-price-alignment: flex-start; --pricing-guest-display-price-flex-wrap: wrap; --pricing-guest-primary-line-font-size: 15px; --pricing-guest-primary-line-line-height: 19px; --pricing-guest-primary-line-unit-price-font-weight: var(--jx-zk-pv); --pricing-guest-primary-line-trailing-content-font-size: 14px; --pricing-guest-secondary-line-font-size: 15px; --pricing-guest-secondary-line-line-height: 19px; --pricing-guest-secondary-line-color: #717171; --pricing-guest-explanation-disclaimer-font-size: 14px; --pricing-guest-explanation-disclaimer-line-height: 18px; --pricing-guest-primary-line-strikethrough-price-font-weight: 600; --pricing-guest-primary-line-qualifier-font-size: 15px; --pricing-guest-primary-line-qualifier-line-height: 19px;"
             // }
             >
-              <span className="text-black dark:text-white">$549 per night</span>
+              <span className="text-black dark:text-white">{data.currency.symbol}{data.price} per night</span>
             </div>
           </div>
 
@@ -83,7 +83,7 @@ const ListingCard = (props: Props) => {
               </svg>
             </span>
             <span aria-hidden="true" className="text-black dark:text-white ml-1">
-              5.0
+              {data.ratings.value}
             </span>
           </span>
         </div>

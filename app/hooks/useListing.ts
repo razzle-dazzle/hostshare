@@ -1,9 +1,11 @@
+"use client";
+
 import useSWR from "swr";
 // import axios from "axios";
-import { ListingModel } from "../model/listing.model";
+import { Categories, ListingModel, RoomInfoBasic } from "../model/listing.model";
 
 type FetcherListingsType = () => Promise<{
-  data: ListingModel[] | null;
+  data: RoomInfoBasic[] | null;
 }>;
 
 // https://swr.vercel.app/docs/data-fetching
@@ -21,20 +23,21 @@ const useListings = () => {
   };
 };
 
-type FetcherPropertyType = (id: string) => Promise<{
-  data: ListingModel | null;
+type FetcherRoomType = (id: string) => Promise<{
+  data: ListingModel["info"] | null;
 }>;
 
 /** A property is a single Airbnb property */
-const fetcherProperty: FetcherPropertyType = (id) =>
-  fetch(`/api/listings/item/${id}`).then((res) => res.json());
+const fetcherRoom: FetcherRoomType = (id) =>
+  fetch(`/api/listings/room/${id}`).then((res) => res.json());
 
-const useProperty = (id: string) => {
-  const { data, error, isLoading } = useSWR(`/api/listings/item/${id}`, () =>
-    fetcherProperty(id)
+const useRoom = (id: string) => {
+  const { data, error, isLoading } = useSWR(`/api/listings/room/${id}`, () =>
+    fetcherRoom(id)
   );
 
   if (!id) {
+    // @todo...
     // throw new Error('No ID!');
     return {
       data: null,
@@ -50,4 +53,35 @@ const useProperty = (id: string) => {
   };
 };
 
-export { useListings, useProperty };
+
+
+type FetcherCategoriesType = () => Promise<{
+  data: Categories[];
+}>;
+/** A list of categories */
+const fetcherCategories: FetcherCategoriesType = () =>
+  fetch(`/api/categories`).then((res) => res.json());
+
+const useCategories = () => {
+  const { data, error, isLoading } = useSWR('/api/categories', () =>
+    fetcherCategories()
+  );
+
+
+  if (!data?.data || data?.data.length === 0) {
+    // @todo...
+    return {
+      data: null,
+      isLoading: true,
+      isError: true,
+    };
+  }
+
+  return {
+    data,
+    isLoading,
+    isError: error,
+  };
+};
+
+export { useListings, useRoom, useCategories };
