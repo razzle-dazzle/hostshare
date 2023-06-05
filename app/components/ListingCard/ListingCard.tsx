@@ -31,16 +31,18 @@ const ListingCard = ({ data }: Props) => {
         <div
           className="grid text-[15px] mt-3 w-full"
           style={{
-            gridTemplateColumns: "273.453px 41.7969px",
-            gridTemplateRows: "19px 19px 19px 25px",
-            height: "88px",
+            // gridTemplateColumns: "273.453px 41.7969px",
+            gridTemplateColumns: "1fr 6fr",
+            // gridTemplateRows: "19px 19px 19px 25px",
+            gridTemplateRows: "19px 19px",
+            height: 40,
             lineBreak: "strict",
             lineHeight: "19px",
             rowGap: "2px",
             textSizeAdjust: "100%",
           }}
         >
-          <div className="font-semibold text-[#222222] dark:text-white text-[15px]">
+          <div className="font-semibold text-[#222222] dark:text-white text-[15px] whitespace-nowrap">
             {data.location.city}, {data.location.country.title}
           </div>
           {/* <div className="grid col-end-[-1] col-start-1">
