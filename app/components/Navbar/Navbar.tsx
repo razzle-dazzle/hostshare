@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
 import ThemeSwitch from "../ThemeSwitch";
 import { useTheme } from "@wits/next-themes";
-import { DatePickerWithRange } from '../Shadcn/DatePicker';
+import { SearchWidget } from './SearchWidget';
 
 export default function Navbar() {
   return (
@@ -25,13 +24,10 @@ export default function Navbar() {
             />
           </div>
         </Link>
-        <DatePickerWithRange></DatePickerWithRange>
-        <div className="flex flex-row justify-center md:justify-end items-center max-w-full">
-          <div className="text-black dark:text-white">Airbnb your home</div>
-          <div className="text-black dark:text-white">Globe</div>
-          <div>
-            <ThemeSwitch></ThemeSwitch>
-          </div>
+        <SearchWidget></SearchWidget>
+        <div className="flex flex-row justify-center md:justify-end items-center max-w-full gap-1">
+          <div className="text-black dark:text-white">Share your home</div>
+          <ThemeSwitch></ThemeSwitch>
           <div>Profile</div>
         </div>
       </div>
