@@ -69,7 +69,7 @@ interface Ratings {
   guestSatisfactionOverall: number;
 }
 
-interface Info {
+interface RoomInfo {
   /** Like "home" */
   type: string;
   images: Image[];
@@ -99,11 +99,26 @@ interface Info {
     /** Like "sleeping-arrangement" */
     type: string;
     data: any[];
-    count: number
+    count: number;
   };
 }
 
+export interface Categories {
+  /** Ex. "8678" */
+  id: string;
+  /** Ex. "rooms" */
+  type: string;
+  /** Ex. "Rooms" */
+  title: string;
+}
 export interface ListingModel {
   ref: string;
-  info: Info;
+  info: RoomInfo;
+}
+export interface JSONListingRawData {
+  source: string;
+  type: string;
+  categories: Categories[];
+  data: ListingModel[];
+  count: number;
 }

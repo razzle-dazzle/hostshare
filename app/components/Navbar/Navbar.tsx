@@ -29,10 +29,10 @@ export default function Navbar() {
         </div>
         <div className="flex flex-row justify-center md:justify-end items-center max-w-full">
 
-          <div>
+          <div className='text-black dark:text-white'>
             Airbnb your home
           </div>
-          <div>
+          <div className='text-black dark:text-white'>
             Globe
           </div>
           <div>

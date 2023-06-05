@@ -19,7 +19,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         {/* <body className={inter.className}>{children}</body> */}
         <body className="antialiased flex flex-col mx-auto bg-white dark:bg-[#171717]">
             <Navbar />
-            <main className="flex-auto min-w-0 flex flex-col px-4 md:px-0">
+            <main className="flex flex-col min-h-screen items-center flex-auto min-w-0">
               {children}
               {/* <Analytics /> */}
             </main>
