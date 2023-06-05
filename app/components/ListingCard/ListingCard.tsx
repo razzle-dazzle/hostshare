@@ -43,18 +43,14 @@ const ListingCard = ({ data }: Props) => {
           <div className="font-semibold text-[#222222] dark:text-white text-[15px]">
             {data.location.city}, {data.location.country.title}
           </div>
-          <div className="grid col-end-[-1] col-start-1">
+          {/* <div className="grid col-end-[-1] col-start-1">
             <span className="text-black dark:text-white">84 miles away</span>
           </div>
           <div className="grid col-end-[-1] col-start-1">
             <span className="text-black dark:text-white">Jun 4 - 9</span>
-          </div>
+          </div> */}
           <div className="grid col-end-[-1] col-start-1">
-            <div
-            // style={
-            //   // "--pricing-guest-display-price-alignment: flex-start; --pricing-guest-display-price-flex-wrap: wrap; --pricing-guest-primary-line-font-size: 15px; --pricing-guest-primary-line-line-height: 19px; --pricing-guest-primary-line-unit-price-font-weight: var(--jx-zk-pv); --pricing-guest-primary-line-trailing-content-font-size: 14px; --pricing-guest-secondary-line-font-size: 15px; --pricing-guest-secondary-line-line-height: 19px; --pricing-guest-secondary-line-color: #717171; --pricing-guest-explanation-disclaimer-font-size: 14px; --pricing-guest-explanation-disclaimer-line-height: 18px; --pricing-guest-primary-line-strikethrough-price-font-weight: 600; --pricing-guest-primary-line-qualifier-font-size: 15px; --pricing-guest-primary-line-qualifier-line-height: 19px;"
-            // }
-            >
+            <div>
               <span className="text-black dark:text-white">
                 {data.currency.symbol}
                 {data.price} per night

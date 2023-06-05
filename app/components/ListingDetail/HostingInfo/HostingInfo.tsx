@@ -12,7 +12,7 @@ const HostingInfo = ({ data }: Props) => {
       <div className="flex justify-between items-center gap-2">
         <div>
           <h2 className="text-[22px] text-[#222] font-semibold mb-1">
-            {data.title} hosted by {data.host.name}
+            {data.title} {data.host.name ? `hosted by ${data.host.name}` : ""}
           </h2>
           <p>16+ guests ....</p>
         </div>
