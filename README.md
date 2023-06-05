@@ -35,3 +35,6 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The project is deployed to Vercel. Merges to the `main` branch will automatically build and deploy a new version of the app.
 
+## Future Improvements
+
+- 🤔 Restructure non-routable files (It's not required, but as the project grows, we could reserve `/app/*` folder just for routing and put components etc in a different location. More info [here](https://nextjs.org/docs/app/building-your-application/routing/colocation#store-project-files-outside-of-app)
