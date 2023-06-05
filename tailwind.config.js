@@ -20,7 +20,8 @@ module.exports = {
         screens: {
           '3xl': '1720px',
           '4xl': '2360px',
-        }
+        },
+        center: true,
       }
     },
   },

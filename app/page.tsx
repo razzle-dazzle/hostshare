@@ -1,10 +1,24 @@
+import FilterPanel from "./components/FilterPanel";
 import ListingCard from "./components/ListingCard";
 import ListingGrid from "./components/ListingGrid";
-import { RoomInfoBasic } from "./model/listing.model";
+import { Categories, RoomInfoBasic } from "./model/listing.model";
 import { ApiResponse } from "./service/http/api.interface";
 
 async function getData(): Promise<ApiResponse<RoomInfoBasic[]>> {
-  const res = await fetch("http://localhost:3000/api/listings", { cache: 'no-store' });
+  const res = await fetch("http://localhost:3000/api/listings", {
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    // Activate the closest `error.ts` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+async function getCategories(): Promise<ApiResponse<Categories[]>> {
+  const res = await fetch(`http://localhost:3000/api/categories`);
 
   if (!res.ok) {
     // Activate the closest `error.ts` Error Boundary
@@ -17,12 +31,15 @@ async function getData(): Promise<ApiResponse<RoomInfoBasic[]>> {
 export default async function Home() {
   const resp = await getData();
   const { data } = resp;
+  const categoriesResp = await getCategories();
+  const { data: categories } = categoriesResp;
 
   if (!data || data.length === 0) {
-    <div>No data!</div>
+    <div>No data!</div>;
   }
   return (
     <div className="container max-4xl">
+      <FilterPanel categories={categories}></FilterPanel>
       <ListingGrid>
         {data.map((room) => {
           return <ListingCard key={room.id} data={room}></ListingCard>;

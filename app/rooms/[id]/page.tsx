@@ -1,13 +1,16 @@
 import { notFound } from "next/navigation";
 // import Balancer from "react-wrap-balancer";
 import Link from "next/link";
-import { ApiResponse } from '@/app/service/http/api.interface';
-import { RoomInfo, RoomInfoBasic } from '@/app/model/listing.model';
-
+import { ApiResponse } from "@/app/service/http/api.interface";
+import { RoomInfo, RoomInfoBasic } from "@/app/model/listing.model";
+import React from "react";
+import { HostingInfo, ImageGallery, ListingDetail, ReserveWidget, TitleStrip } from "@/app/components/ListingDetail";
 
 export async function generateStaticParams() {
-  const rooms: ApiResponse<RoomInfoBasic[]> = await fetch('http://localhost:3000/api/listings').then((res) => res.json());
- 
+  const rooms: ApiResponse<RoomInfoBasic[]> = await fetch(
+    "http://localhost:3000/api/listings"
+  ).then((res) => res.json());
+
   return rooms.data.map((room) => ({
     id: room.id,
   }));
@@ -27,7 +30,7 @@ async function getData(id: string): Promise<ApiResponse<RoomInfo>> {
 export default async function RoomPage({ params }: { params: { id: string } }) {
   // const router = useRouter();
   // const id: string = (router.query.id as string) ?? "";
-  const {id} = params;
+  const { id } = params;
   // const { data, isLoading, isError } = useRoom(id);
   // const post = data && data.data;
 
@@ -39,18 +42,14 @@ export default async function RoomPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <section className="w-full max-w-7xl m-auto relative pb-8">
-      {/* <script type="application/ld+json" suppressHydrationWarning>
-        {JSON.stringify(post.structuredData)}
-      </script> */}
-      <div>
-        <h1 className="font-bold text-3xl text-black dark:text-white">
-          {/* <Balancer>{post.title}</Balancer> */}
-          {data.title}
-        </h1>
+    <div className="container max-w-4xl">
+      <section className="w-full m-auto relative">
+        {/* <script type="application/ld+json" suppressHydrationWarning>
+          {JSON.stringify(post.structuredData)}
+        </script> */}
+        <ListingDetail data={data} />
         
-        
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
