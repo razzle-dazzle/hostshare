@@ -15,7 +15,8 @@ export default function Navbar() {
           <div className="w-[200px] h-[80px] relative">
           <Image
             src={"/hostshare-logo-green.png"}
-            fill={true}
+            priority
+            fill
             sizes="(max-width: 500px) 100vw, 120px"
             style={{
               objectFit: "cover",
