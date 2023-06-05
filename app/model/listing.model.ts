@@ -81,7 +81,11 @@ export interface RoomInfo {
   /** Like "home" */
   type: string;
   /** List of all the photos */
-  images: Image[];
+  images: {
+    type: string;
+    data: Image[];
+    count: number;
+  };
   mainImage: Image;
   details: Details;
   /** Like "Beautiful Bedroom in West LA Architectural Gem" */
