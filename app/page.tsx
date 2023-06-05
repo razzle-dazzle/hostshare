@@ -4,7 +4,7 @@ import { RoomInfoBasic } from "./model/listing.model";
 import { ApiResponse } from "./service/http/api.interface";
 
 async function getData(): Promise<ApiResponse<RoomInfoBasic[]>> {
-  const res = await fetch("http://localhost:3000/api/listings");
+  const res = await fetch("http://localhost:3000/api/listings", { cache: 'no-store' });
 
   if (!res.ok) {
     // Activate the closest `error.ts` Error Boundary
@@ -22,7 +22,7 @@ export default async function Home() {
     <div>No data!</div>
   }
   return (
-    <div className="container">
+    <div className="container max-4xl">
       <ListingGrid>
         {data.map((room) => {
           return <ListingCard key={room.id} data={room}></ListingCard>;
