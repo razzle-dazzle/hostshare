@@ -18,14 +18,18 @@ import LocationSearch from "./LocationSearch";
 import Link from "next/link";
 import { Button } from "../Shadcn/Button";
 import { Search } from "lucide-react";
+import { useRouter } from 'next/navigation';
 
 export function SearchWidget() {
+  const router = useRouter();
+
   const fromTo = {
     from: addDays(new Date(), 1),
     to: addDays(new Date(), 4),
   };
-  const handleSearch = () => {
-    
+  const handleSearch = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    router.push('/results');
   };
   
   return (
@@ -81,12 +85,12 @@ export function SearchWidget() {
             </NavigationMenuItem>
 
             <NavigationMenuItem className="hidden md:block">
-              <Link href="/search" legacyBehavior passHref>
+              <Link href="/results" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   <Button
                     variant="destructive"
                     className="rounded-full"
-                    onClick={handleSearch}
+                    // onClick={(e) => handleSearch(e)}
                   >
                     <Search className="h-4 w-4" />
                   </Button>
@@ -100,7 +104,7 @@ export function SearchWidget() {
         <Button
           variant="destructive"
           className="rounded-full flex gap-1"
-          onClick={handleSearch}
+          onClick={(e) => handleSearch(e)}
         >
           <span className='font-semibold text-md'>Search</span> <Search className="h-4 w-4" />
         </Button>
