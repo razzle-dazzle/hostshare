@@ -6,9 +6,10 @@ import Link from "next/link";
 
 type Props = {
   data: RoomInfoBasic;
+  index: number;
 };
 
-const ListingCard = ({ data }: Props) => {
+const ListingCard = ({ data, index }: Props) => {
   const roomUrl = ListingService.getRoomRoute(data) as Route; // https://nextjs.org/docs/app/building-your-application/configuring/typescript#typescript-plugin
   return (
     <Link href={roomUrl}>
@@ -23,6 +24,8 @@ const ListingCard = ({ data }: Props) => {
               borderRadius: 12,
               aspectRatio: data.mainImage.aspectRatio,
             }}
+            // priority={index < 12 ? true : false}
+            loading={index < 12 ? "eager" : "lazy"}
             alt={""}
           />
         </div>
