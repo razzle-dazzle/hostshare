@@ -6,7 +6,7 @@ type Props = {
 
 const FilterPanel = ({ categories }: Props) => {
   return (
-    <div className="grid gap-8 w-full" style={{
+    <div className="grid gap-8 w-full mb-4 md:mb-8" style={{
       gridAutoColumns: 'max-content',
       gridAutoFlow: 'column',
       gridTemplateAreas: 'none',
