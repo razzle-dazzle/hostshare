@@ -5,6 +5,7 @@ import Link from "next/link";
 import ThemeSwitch from "../ThemeSwitch";
 import { useTheme } from "@wits/next-themes";
 import { SearchWidget } from './SearchWidget';
+import { ProfileMenu } from './ProfileMenu';
 
 export default function Navbar() {
   return (
@@ -25,10 +26,12 @@ export default function Navbar() {
           </div>
         </Link>
         <SearchWidget></SearchWidget>
-        <div className="flex flex-row justify-center md:justify-end items-center max-w-full gap-1">
-          <div className="text-black dark:text-white">Share your home</div>
+        <div className="flex flex-row justify-center md:justify-end items-center max-w-full gap-2.5">
+          <div className="text-black dark:text-white font-semibold">
+            <Link href="#">Share your home</Link>
+          </div>
           <ThemeSwitch></ThemeSwitch>
-          <div>Profile</div>
+          <ProfileMenu></ProfileMenu>
         </div>
       </div>
     </div>
