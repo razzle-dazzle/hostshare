@@ -21,7 +21,7 @@ type ResultItem =
 const LocationSearch = () => {
   const { data, error, isLoading } = useSWR(`/api/locations`, fetcherLocations);
   if (isLoading) {
-    return <div className="w-[370px] my-4">Loading...</div>;
+    return <div className="w-[300px] md:w-[370px] my-4">Loading...</div>;
   }
 
   const handleOnSearch = (string: string, results: any) => {
@@ -51,7 +51,7 @@ const LocationSearch = () => {
   });
 
   return (
-    <div className="w-[370px] md:w-[470px] lg:w-[570px] my-4">
+    <div className="w-[300px] sm:w-[370px] md:w-[470px] lg:w-[570px] my-4">
       <ReactSearchAutocomplete<ResultItem>
         items={items}
         formatResult={formatResult}
