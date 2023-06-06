@@ -39,7 +39,7 @@ type ImageGalleryProps = {
 };
 const ImageGallery = ({ data }: ImageGalleryProps) => {
   return (
-    <div className="my-6">
+    <div className="my-6 md:my-12">
       <section className="dark:bg-gray-800 dark:text-gray-50">
         <div className="container grid grid-cols-2 gap-2 mx-auto md:grid-cols-4">
           {data.images.data.slice(0, 5).map((image, index) => {

@@ -53,7 +53,10 @@ class ListingService {
       .map((room) => {
         return {
           id: room.id,
-          images: room.images,
+          // images: {
+          //   ...room.images,
+          //   data: room.images.data.slice(0, 1), // Note: reduce the payload to just one image!
+          // },
           mainImage: room.mainImage,
           location: room.location,
           ratings: room.ratings,

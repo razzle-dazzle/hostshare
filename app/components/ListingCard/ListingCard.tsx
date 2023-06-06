@@ -31,9 +31,7 @@ const ListingCard = ({ data }: Props) => {
         <div
           className="grid text-[15px] mt-3 w-full"
           style={{
-            // gridTemplateColumns: "273.453px 41.7969px",
             gridTemplateColumns: "1fr 6fr",
-            // gridTemplateRows: "19px 19px 19px 25px",
             gridTemplateRows: "19px 19px",
             height: 40,
             lineBreak: "strict",
@@ -61,7 +59,7 @@ const ListingCard = ({ data }: Props) => {
           </div>
 
           <span
-            aria-label="5.0 out of 5 average rating"
+            aria-label={`${data.ratings.guestSatisfactionOverall} out of 5 average rating`}
             className="flex items-center col-end-[-1] col-start-[-2] justify-self-end row-end-auto row-start-1"
             role="img"
           >
@@ -89,7 +87,7 @@ const ListingCard = ({ data }: Props) => {
               aria-hidden="true"
               className="text-black dark:text-white ml-1"
             >
-              {data.ratings.value}
+              {data.ratings.guestSatisfactionOverall}
             </span>
           </span>
         </div>

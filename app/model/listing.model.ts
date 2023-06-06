@@ -66,12 +66,15 @@ interface Ratings {
   accuracy: number;
   /** Ex: 5 */
   checkin: number;
-  /** Ex. 4.96 */
+  /** Cleanliness rating Ex. 4.96 */
   cleanliness: number;
+  /** Communication rating Ex. 4.96 */
   communication: number;
+  /** Location rating */
   location: number;
   /** The calculated rating value */
   value: number;
+  /** The total number of reviews by people */
   guestSatisfactionOverall: number;
 }
 
@@ -86,13 +89,15 @@ export interface RoomInfo {
     data: Image[];
     count: number;
   };
+  /** The main image to show first */
   mainImage: Image;
+  /** Details about the listing, like beds etc */
   details: Details;
   /** Like "Beautiful Bedroom in West LA Architectural Gem" */
   title: string;
   /** The long description of the listing */
   description: string;
-
+  
   maxGuestCapacity: number;
   host?: {
     /** Ex. Natalie And Scott */
@@ -123,7 +128,7 @@ export interface RoomInfo {
 }
 
 /** This is all the info that a card needs on the index page */
-export type RoomInfoBasic = Pick<RoomInfo, "id" | "images" | "mainImage" | "location" | "ratings" | "price" | "currency">;
+export type RoomInfoBasic = Pick<RoomInfo, "id" | "mainImage" | "location" | "ratings" | "price" | "currency">;
 
 export interface Categories {
   /** Ex. "8678" */
