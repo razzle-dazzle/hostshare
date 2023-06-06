@@ -27,7 +27,7 @@ export default function Navbar() {
               />
             </div>
           </Link>
-          <div className='flex justify-center order-1 md:order-[initial] basis-1/2 flex-grow md:flex-grow-0'>
+          <div className='flex flex-col md:flex-row justify-center order-1 md:order-[initial] basis-1/2 flex-grow md:flex-grow-0'>
             <SearchWidget></SearchWidget>
           </div>
           <div className="flex flex-grow flex-shrink-0 flex-row justify-end items-center max-w-full gap-2.5">
