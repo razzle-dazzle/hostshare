@@ -32,7 +32,7 @@ const Amenities = ({ data: { amenities } }: ImageGalleryProps) => {
                 </svg>
                 <div
                   className={clsx(
-                    "my-1 font-semibold font-md text-[#222]",
+                    "my-1 font-semibold font-md text-[#222] dark:text-white",
                     amenity.available === false ? "line-through" : ""
                   )}
                 >

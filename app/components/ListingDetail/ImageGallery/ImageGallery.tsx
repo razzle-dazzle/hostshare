@@ -2,7 +2,7 @@
 
 import { RoomInfo } from "@/app/model/listing.model";
 import Image from "next/image";
-import { GridGallery } from "..";
+import { GallerySheet, GridGallery } from "..";
 import { Button } from "../../Shadcn/Button";
 
 interface ImageTileProps {
@@ -38,21 +38,6 @@ const ImageTile = ({ image, tileIndex, size = "small" }: ImageTileProps) => {
   );
 };
 
-const images = [
-  {
-    original: "https://picsum.photos/id/1018/1000/600/",
-    thumbnail: "https://picsum.photos/id/1018/250/150/",
-  },
-  {
-    original: "https://picsum.photos/id/1015/1000/600/",
-    thumbnail: "https://picsum.photos/id/1015/250/150/",
-  },
-  {
-    original: "https://picsum.photos/id/1019/1000/600/",
-    thumbnail: "https://picsum.photos/id/1019/250/150/",
-  },
-];
-
 type ImageGalleryProps = {
   data: RoomInfo;
 };
@@ -78,17 +63,19 @@ const ImageGallery = ({ data }: ImageGalleryProps) => {
               <ImageTile key={index} image={image} tileIndex={index} />
             );
           })}
-          <Button
+          {/* <Button
             variant={"secondary"}
             className="bottom-6 right-6 absolute"
             onClick={handleGalleryModal}
           >
             Show all photos
-          </Button>
+          </Button> */}
         </div>
       </section>
-
-      <GridGallery images={images}></GridGallery>
+      
+      <GallerySheet>
+        <GridGallery images={images}></GridGallery>
+      </GallerySheet>
     </div>
   );
 };
