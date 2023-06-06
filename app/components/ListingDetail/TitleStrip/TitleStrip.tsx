@@ -22,7 +22,7 @@ const TitleStrip = ({ data }: Props) => {
           </span>
         </button>
         <SpacerDot></SpacerDot>
-        {data.host.isSuperhost && (
+        {data.host?.isSuperhost && (
           // handle superhost, if applicable
           <React.Fragment>
             <span className="">Superhost</span>

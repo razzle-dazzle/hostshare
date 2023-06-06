@@ -12,24 +12,28 @@ const HostingInfo = ({ data }: Props) => {
       <div className="flex justify-between items-center gap-2">
         <div>
           <h2 className="text-[22px] text-[#222] font-semibold mb-1">
-            {data.title} {data.host.name ? `hosted by ${data.host.name}` : ""}
+            {data.title} {data.host?.name ? `hosted by ${data.host.name}` : ""}
           </h2>
           <p>16+ guests ....</p>
         </div>
         <div className="flex w-[56px] h-[56px] relative flex-shrink-0">
-          <Image
-            src={data.host.avatar.url}
-            alt={"Host image"}
-            fill
-            style={{
-              objectFit: "cover",
-              borderRadius: "50%",
-              // aspectRatio: data.host.avatar.aspectRatio,
-            }}
-            // width={56}
-            // height={56}
-          />
-          {data.host.isSuperhost && (
+          {
+            data.host && (
+              <Image
+                src={data.host.avatar.url}
+                alt={"Host image"}
+                fill
+                style={{
+                  objectFit: "cover",
+                  borderRadius: "50%",
+                  // aspectRatio: data.host.avatar.aspectRatio,
+                }}
+                // width={56}
+                // height={56}
+              />
+            )
+          }
+          {data.host?.isSuperhost && (
             <div className="absolute bottom-0 right-0 w-[20px] h-[22px]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

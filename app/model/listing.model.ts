@@ -94,7 +94,7 @@ export interface RoomInfo {
   description: string;
 
   maxGuestCapacity: number;
-  host: {
+  host?: {
     /** Ex. Natalie And Scott */
     name: string;
     avatar: Image;
@@ -132,6 +132,14 @@ export interface Categories {
   type: string;
   /** Ex. "Rooms" */
   title: string;
+}
+
+/** This interface is to power the city search widget */
+export interface Locations {
+  /** The town or city */
+  city: string;
+  /** The country */
+  country: string;
 }
 export interface ListingModel {
   ref: string;
