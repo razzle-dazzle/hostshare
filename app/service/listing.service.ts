@@ -17,9 +17,9 @@ class ListingService {
   private async parseRawJson(): Promise<JSONListingRawData | null> {
     // Get the absolute path of the json directory
     // const jsonDirectory = path.join(process.cwd(), "json");
-    const jsonDirectory = "/json"; // inside public folder
+    // const jsonDirectory = "/json"; // inside public folder
     // Read json data file
-    const fileContents = readFileSync('/json/listings.json', "utf8").toString();
+    const fileContents = readFileSync('./listings.json', "utf8").toString();
 
     // const fileContents = await fs.readFile(
     //   jsonDirectory + "/listings.json",
