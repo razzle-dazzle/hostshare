@@ -42,7 +42,7 @@ export default async function RoomPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="container max-w-[1120px]">
+    <div className="container max-w-[1120px] my-4 md:my-8">
       <section className="w-full m-auto relative">
         {/* <script type="application/ld+json" suppressHydrationWarning>
           {JSON.stringify(post.structuredData)}
