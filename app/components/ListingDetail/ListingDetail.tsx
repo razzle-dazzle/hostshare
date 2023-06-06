@@ -8,7 +8,7 @@ import {
   ReserveWidget,
   TitleStrip,
 } from "@/app/components/ListingDetail";
-import MapWrapper from '../Map/MapWrapper';
+import MapWrapper from "../Map/MapWrapper";
 
 interface Props {
   data: RoomInfo;
@@ -31,16 +31,15 @@ const ListingDetail = ({ data }: Props) => {
             <Lorem key={key} />
           ))}
         </div>
-        <div
-          className="w-[96vw] m-auto md:m-[initial] fixed md:relative md:w-[33%] md:ml-[8%] md:mr-0 bottom-0 md:bottom-auto left-0 md:left-auto right-0 md:right-auto z-[10000] bg-white md:bg-transparent"
-        >
+        <div className="w-[96vw] m-auto md:m-[initial] fixed md:relative md:w-[33%] md:ml-[8%] md:mr-0 bottom-0 md:bottom-auto left-0 md:left-auto right-0 md:right-auto z-[10000] md:z-[10] bg-white md:bg-transparent">
           <ReserveWidget data={data} />
         </div>
 
-        <MapWrapper center={mapCenter}></MapWrapper>
+        <section className="w-full my-6 md:my-12">
+          <h2 className="text-xl font-semibold mb-6">{"Where you'll be"}</h2>
+          <MapWrapper center={mapCenter}></MapWrapper>
+        </section>
       </div>
-      
-      
     </React.Fragment>
   );
 };

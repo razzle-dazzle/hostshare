@@ -4,13 +4,15 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 const icon = L.icon({ iconUrl: "/hostshare-map-icon.png" }); // https://stackoverflow.com/questions/49441600/react-leaflet-marker-files-not-found
 
+export type LatLng = { lat: number; lng: number };
 type MapProps = {
-  center?: { lat: number; lng: number };
+  center?: LatLng;
+  markers?: LatLng[];
 };
 // some default initial centre...I chose Yakima!
 const yakima = { lat: 46.5945172, lng: -120.5462013 };
 
-const Map = ({ center = yakima }: MapProps) => {
+const Map = ({ center = yakima, markers }: MapProps) => {
   // set center
   const [mapCenter, setMapCenter] = useState({ ...center });
   const ZOOM_LEVEL = 10;
@@ -31,9 +33,9 @@ const Map = ({ center = yakima }: MapProps) => {
           />
 
           <Marker position={center} icon={icon}>
-            {/* <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup> */}
+            <Popup>
+              $123
+            </Popup>
           </Marker>
           {/* {location.loaded && !location.error && (
                   <Marker
