@@ -8,11 +8,13 @@ import {
   ReserveWidget,
   TitleStrip,
 } from "@/app/components/ListingDetail";
+import MapWrapper from '../Map/MapWrapper';
 
 interface Props {
   data: RoomInfo;
 }
 const ListingDetail = ({ data }: Props) => {
+  const mapCenter = { lat: data.location.lat, lng: data.location.long };
   return (
     <React.Fragment>
       <TitleStrip data={data} />
@@ -25,16 +27,20 @@ const ListingDetail = ({ data }: Props) => {
           <Amenities data={data} />
 
           {/* Placeholder so can see the sticky effect */}
-          {[...Array(12).keys()].map((_, key) => (
+          {[...Array(6).keys()].map((_, key) => (
             <Lorem key={key} />
           ))}
         </div>
         <div
-          className="w-[96vw] m-auto md:m-[initial] fixed md:relative md:w-[33%] md:ml-[8%] md:mr-0 bottom-0 md:bottom-auto left-0 md:left-auto right-0 md:right-auto z-10 bg-white md:bg-transparent"
+          className="w-[96vw] m-auto md:m-[initial] fixed md:relative md:w-[33%] md:ml-[8%] md:mr-0 bottom-0 md:bottom-auto left-0 md:left-auto right-0 md:right-auto z-[10000] bg-white md:bg-transparent"
         >
           <ReserveWidget data={data} />
         </div>
+
+        <MapWrapper center={mapCenter}></MapWrapper>
       </div>
+      
+      
     </React.Fragment>
   );
 };
