@@ -4,15 +4,15 @@ import { RoomInfo, RoomInfoBasic } from "@/app/model/listing.model";
 import React from "react";
 import { ListingDetail } from "@/app/components/ListingDetail";
 
-export async function generateStaticParams() {
-  const rooms: ApiResponse<RoomInfoBasic[]> = await fetch(
-    process.env.NEXT_PUBLIC_ENDPOINT + "/api/listings"
-  ).then((res) => res.json());
+// export async function generateStaticParams() {
+//   const rooms: ApiResponse<RoomInfoBasic[]> = await fetch(
+//     process.env.NEXT_PUBLIC_ENDPOINT + "/api/listings"
+//   ).then((res) => res.json());
 
-  return rooms.data.map((room) => ({
-    id: room.id,
-  }));
-}
+//   return rooms.data.map((room) => ({
+//     id: room.id,
+//   }));
+// }
 
 async function getData(id: string): Promise<ApiResponse<RoomInfo>> {
   const res = await fetch(process.env.NEXT_PUBLIC_ENDPOINT + `/api/listings/${id}?id=${id}`);
