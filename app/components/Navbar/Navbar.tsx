@@ -6,12 +6,13 @@ import ThemeSwitch from "../ThemeSwitch";
 import { useTheme } from "@wits/next-themes";
 import { SearchWidget } from './SearchWidget';
 import { ProfileMenu } from './ProfileMenu';
+import GuestSelector from './GuestSelector';
 
 export default function Navbar() {
   return (
     <div className="mx-auto py-6 md:py-8 container max-4xl">
       <div className="w-full flex flex-col md:flex-row gap-4 md:gap-0 justify-between items-center">
-        <Link href="/">
+        <Link href="/" className='flex-[200px] flex-grow flex-shrink-0'>
           <div className="w-[200px] h-[80px] relative">
             <Image
               src={"/hostshare-logo-green.png"}
@@ -26,10 +27,11 @@ export default function Navbar() {
           </div>
         </Link>
         <SearchWidget></SearchWidget>
-        <div className="flex flex-row justify-center md:justify-end items-center max-w-full gap-2.5">
-          <div className="text-black dark:text-white font-semibold">
+        {/* <GuestSelector></GuestSelector> */}
+        <div className="flex flex-grow flex-shrink-0 flex-row justify-center md:justify-end items-center max-w-full gap-2.5">
+          {/* <div className="text-black dark:text-white font-semibold">
             <Link href="#">Share your home</Link>
-          </div>
+          </div> */}
           <ThemeSwitch></ThemeSwitch>
           <ProfileMenu></ProfileMenu>
         </div>
