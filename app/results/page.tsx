@@ -6,7 +6,7 @@ import { Categories, RoomInfoBasic } from "./../model/listing.model";
 import { ApiResponse } from "./../service/http/api.interface";
 
 async function getData(): Promise<ApiResponse<RoomInfoBasic[]>> {
-  const res = await fetch("http://localhost:3000/api/listings");
+  const res = await fetch(process.env.NEXT_PUBLIC_ENDPOINT + "/api/listings");
 
   if (!res.ok) {
     // Activate the closest `error.ts` Error Boundary
@@ -17,7 +17,7 @@ async function getData(): Promise<ApiResponse<RoomInfoBasic[]>> {
 }
 
 async function getCategories(): Promise<ApiResponse<Categories[]>> {
-  const res = await fetch(`http://localhost:3000/api/categories`);
+  const res = await fetch(process.env.NEXT_PUBLIC_ENDPOINT + `/api/categories`);
 
   if (!res.ok) {
     // Activate the closest `error.ts` Error Boundary

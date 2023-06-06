@@ -6,7 +6,7 @@ import { ListingDetail } from "@/app/components/ListingDetail";
 
 export async function generateStaticParams() {
   const rooms: ApiResponse<RoomInfoBasic[]> = await fetch(
-    "http://localhost:3000/api/listings"
+    process.env.NEXT_PUBLIC_ENDPOINT + "/api/listings"
   ).then((res) => res.json());
 
   return rooms.data.map((room) => ({
@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 }
 
 async function getData(id: string): Promise<ApiResponse<RoomInfo>> {
-  const res = await fetch(`http://localhost:3000/api/listings/${id}?id=${id}`);
+  const res = await fetch(process.env.NEXT_PUBLIC_ENDPOINT + `/api/listings/${id}?id=${id}`);
 
   if (!res.ok) {
     // Activate the closest `error.ts` Error Boundary
