@@ -1,5 +1,8 @@
+"use client";
+
 import { RoomInfo } from "@/app/model/listing.model";
 import Image from "next/image";
+// import { ReactImageGallery } from '..';
 
 interface ImageTileProps {
   image: RoomInfo["images"]["data"][number];
@@ -34,10 +37,31 @@ const ImageTile = ({ image, tileIndex, size = "small" }: ImageTileProps) => {
   );
 };
 
+const images = [
+  {
+    original: 'https://picsum.photos/id/1018/1000/600/',
+    thumbnail: 'https://picsum.photos/id/1018/250/150/',
+  },
+  {
+    original: 'https://picsum.photos/id/1015/1000/600/',
+    thumbnail: 'https://picsum.photos/id/1015/250/150/',
+  },
+  {
+    original: 'https://picsum.photos/id/1019/1000/600/',
+    thumbnail: 'https://picsum.photos/id/1019/250/150/',
+  },
+];
+
+
 type ImageGalleryProps = {
   data: RoomInfo;
 };
 const ImageGallery = ({ data }: ImageGalleryProps) => {
+
+  const handleGalleryModal = () => {
+    console.log("show all photos")
+  }
+
   return (
     <div className="my-6 md:my-12">
       <section className="dark:bg-gray-800 dark:text-gray-50">
@@ -51,6 +75,8 @@ const ImageGallery = ({ data }: ImageGalleryProps) => {
           })}
         </div>
       </section>
+      <button onClick={handleGalleryModal}>Show all photos</button>
+
     </div>
   );
 };
