@@ -1,47 +1,39 @@
-import { Locations } from '@/app/model/listing.model';
-import { ApiResponse } from '@/app/service/http/api.interface';
-import React from "react";
+"use client";
+
+import { Locations } from "@/app/model/listing.model";
+import { ApiResponse } from "@/app/service/http/api.interface";
+import React, { useEffect, useState } from "react";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import useSWR from "swr";
 
-async function getData(): Promise<ApiResponse<Locations[]>> {
-  const res = await fetch("http://localhost:3000/api/locations", {
-    // cache: "no-store",
-  });
+type FetcherLocationsType = () => Promise<ApiResponse<Locations[]>>;
 
-  if (!res.ok) {
-    // Activate the closest `error.ts` Error Boundary
-    throw new Error("Failed to fetch data");
+const fetcherLocations: FetcherLocationsType = () =>
+  fetch(`/api/locations`).then((res) => res.json());
+
+type ResultItem =
+  | Locations
+  | {
+      id: number;
+      name: string;
+    };
+
+const LocationSearch = () => {
+  const { data, error, isLoading } = useSWR(`/api/locations`, fetcherLocations);
+  if (isLoading) {
+    return <div className="w-[370px] my-4">Loading...</div>;
   }
 
-  return res.json();
-}
-
-
-type ResultItem = Locations | {
-  id: number;
-  name: string;
-}
-
-const LocationSearch = async () => {
-  const resp = await getData();
-  const { data } = resp;
-  const items = (data || []).map(d => {
-    return {
-      ...d,
-      id: d.city,
-      name: `${d.city}, ${d.country}`,
-    }
-  });
-  
   const handleOnSearch = (string: string, results: any) => {
-    console.log(string, results);
+    console.log("Handle on search here");
+    // console.log(string, results);
   };
 
   const handleOnSelect = (item: any) => {
     // console.log(item);
   };
-  
-  const formatResult = (item: Locations & { id: string, name: string}) => {
+
+  const formatResult = (item: Locations & { id: string; name: string }) => {
     return (
       <div className="result-wrapper">
         <span className="result-span">{item.city}, </span>
@@ -50,8 +42,16 @@ const LocationSearch = async () => {
     );
   };
 
+  const items: ResultItem[] = (data && data.data ? data.data : []).map((d) => {
+    return {
+      ...d,
+      id: d.city,
+      name: `${d.city}, ${d.country}`,
+    };
+  });
+
   return (
-    <div className="w-[380px] my-4">
+    <div className="w-[370px] md:w-[470px] lg:w-[570px] my-4">
       <ReactSearchAutocomplete<ResultItem>
         items={items}
         formatResult={formatResult}
@@ -60,7 +60,8 @@ const LocationSearch = async () => {
         // onClear={handleOnClear}
         styling={{ zIndex: 4 }} // To display it on top of the search box below
         autoFocus
-        placeholder='Search destinations'
+        maxResults={8}
+        placeholder="Search destinations"
       />
       {/* <div style={{ marginTop: 20 }}>This text will be covered!</div> */}
     </div>

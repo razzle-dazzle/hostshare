@@ -44,9 +44,9 @@ const ImageGallery = ({ data }: ImageGalleryProps) => {
         <div className="container grid grid-cols-2 gap-2 mx-auto md:grid-cols-4">
           {data.images.data.slice(0, 5).map((image, index) => {
             return index === 0 ? (
-              <ImageTile image={image} tileIndex={index} size="large" />
+              <ImageTile key={index} image={image} tileIndex={index} size="large" />
             ) : (
-              <ImageTile image={image} tileIndex={index} />
+              <ImageTile key={index} image={image} tileIndex={index} />
             );
           })}
         </div>

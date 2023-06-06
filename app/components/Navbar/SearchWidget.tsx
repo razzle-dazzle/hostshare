@@ -31,10 +31,10 @@ export function SearchWidget() {
 
           {/* Location Search */}
           <NavigationMenuItem>
-            <NavigationMenuTrigger className='rounded-3xl'>Search City</NavigationMenuTrigger>
+            <NavigationMenuTrigger className='rounded-3xl'>Search</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <div className='w-[400px] p-4 md:w-[500px] lg:w-[600px] h-[480px]'>
-                <h3 className='text-lg font-semibold mb-4'>Search</h3>
+              <div className='p-4 w-[400px] md:w-[500px] lg:w-[600px] h-[400px]'>
+                <h3 className='text-lg font-semibold mb-4'>Search destinations</h3>
                 <LocationSearch></LocationSearch>
               </div>
             </NavigationMenuContent>
@@ -44,7 +44,7 @@ export function SearchWidget() {
           <NavigationMenuItem>
             <NavigationMenuTrigger className='rounded-3xl'>{format(fromTo.from, "MMM d")} - {format(fromTo.to, "MMM d")}</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <div className='w-[400px] p-4 md:w-[500px] lg:w-[600px] h-[480px]'>
+              <div className='p-4 w-[400px] md:w-[500px] lg:w-[600px] h-[480px]'>
                 <h3 className='text-lg font-semibold mb-4'>Choose dates</h3>
                 <DatePickerWithRange></DatePickerWithRange>
               </div>
@@ -55,7 +55,7 @@ export function SearchWidget() {
           <NavigationMenuItem>
             <NavigationMenuTrigger className='rounded-3xl'>Guests</NavigationMenuTrigger>
             <NavigationMenuContent>
-              <div className='w-[400px] p-4 md:w-[500px] lg:w-[600px]'>
+              <div className='p-4 w-[400px] md:w-[500px] lg:w-[600px]'>
                 <h3 className='text-lg font-semibold mb-4'>Choose guests</h3>
                 <GuestSelector></GuestSelector>
               </div>

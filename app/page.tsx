@@ -5,9 +5,7 @@ import { Categories, RoomInfoBasic } from "./model/listing.model";
 import { ApiResponse } from "./service/http/api.interface";
 
 async function getData(): Promise<ApiResponse<RoomInfoBasic[]>> {
-  const res = await fetch("http://localhost:3000/api/listings", {
-    cache: "force-cache",
-  });
+  const res = await fetch("http://localhost:3000/api/listings");
 
   if (!res.ok) {
     // Activate the closest `error.ts` Error Boundary
