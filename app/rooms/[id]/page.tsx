@@ -1,10 +1,8 @@
 import { notFound } from "next/navigation";
-// import Balancer from "react-wrap-balancer";
-import Link from "next/link";
 import { ApiResponse } from "@/app/service/http/api.interface";
 import { RoomInfo, RoomInfoBasic } from "@/app/model/listing.model";
 import React from "react";
-import { HostingInfo, ImageGallery, ListingDetail, ReserveWidget, TitleStrip } from "@/app/components/ListingDetail";
+import { ListingDetail } from "@/app/components/ListingDetail";
 
 export async function generateStaticParams() {
   const rooms: ApiResponse<RoomInfoBasic[]> = await fetch(
@@ -28,12 +26,7 @@ async function getData(id: string): Promise<ApiResponse<RoomInfo>> {
 }
 
 export default async function RoomPage({ params }: { params: { id: string } }) {
-  // const router = useRouter();
-  // const id: string = (router.query.id as string) ?? "";
   const { id } = params;
-  // const { data, isLoading, isError } = useRoom(id);
-  // const post = data && data.data;
-
   const resp = await getData(id);
   const { data } = resp;
 
@@ -48,7 +41,6 @@ export default async function RoomPage({ params }: { params: { id: string } }) {
           {JSON.stringify(post.structuredData)}
         </script> */}
         <ListingDetail data={data} />
-        
       </section>
     </div>
   );

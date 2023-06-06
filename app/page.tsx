@@ -39,8 +39,8 @@ export default async function Home() {
     <div className="container max-4xl">
       <FilterPanel categories={categories}></FilterPanel>
       <ListingGrid>
-        {data.map((room) => {
-          return <ListingCard key={room.id} data={room}></ListingCard>;
+        {data.map((room, index) => {
+          return <ListingCard key={room.id} data={room} index={index}></ListingCard>;
         })}
       </ListingGrid>
     </div>
