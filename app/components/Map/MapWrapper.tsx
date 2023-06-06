@@ -9,10 +9,12 @@ const OpenStreetMap = dynamic(() => import("./Map"), {
 
 type MapWrapperProps = {
   center?: LatLng;
+  initialZoom?: number;
+  heightFull?: boolean;
 };
-const MapWrapper = ({ center }: MapWrapperProps) => {
+const MapWrapper = (props: MapWrapperProps) => {
   return (
-    <OpenStreetMap center={center} />
+    <OpenStreetMap {...props} />
   );
 };
 export default MapWrapper;
