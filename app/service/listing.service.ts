@@ -1,5 +1,5 @@
 import path from "path";
-import { promises as fs } from "fs";
+import { promises as fs, readFileSync } from "fs";
 import {
   Categories,
   JSONListingRawData,
@@ -19,10 +19,12 @@ class ListingService {
     // const jsonDirectory = path.join(process.cwd(), "json");
     const jsonDirectory = "/json"; // inside public folder
     // Read json data file
-    const fileContents = await fs.readFile(
-      jsonDirectory + "/listings.json",
-      "utf8"
-    );
+    const fileContents = readFileSync('/json/listings.json', "utf8").toString();
+
+    // const fileContents = await fs.readFile(
+    //   jsonDirectory + "/listings.json",
+    //   "utf8"
+    // );
     // parse file
     let parsed: JSONListingRawData | null = null;
     try {
