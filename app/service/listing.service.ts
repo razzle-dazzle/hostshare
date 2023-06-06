@@ -9,6 +9,8 @@ import {
   RoomInfoBasic,
 } from "../model/listing.model";
 
+export const endpoint = process.env.NEXT_PUBLIC_ENDPOINT ?? "http://localhost:3000";
+
 class ListingService {
   /**
    * Load and parse a local JSON file
@@ -16,15 +18,15 @@ class ListingService {
    */
   private async parseRawJson(): Promise<JSONListingRawData | null> {
     // Get the absolute path of the json directory
-    // const jsonDirectory = path.join(process.cwd(), "json");
+    const jsonDirectory = path.join(process.cwd(), "public", "json");
     // const jsonDirectory = "/json"; // inside public folder
     // Read json data file
-    const fileContents = readFileSync('./listings.json', "utf8").toString();
+    // const fileContents = readFileSync('listings.json', "utf8").toString();
 
-    // const fileContents = await fs.readFile(
-    //   jsonDirectory + "/listings.json",
-    //   "utf8"
-    // );
+    const fileContents = await fs.readFile(
+      jsonDirectory + "/listings.json",
+      "utf8"
+    );
     // parse file
     let parsed: JSONListingRawData | null = null;
     try {
