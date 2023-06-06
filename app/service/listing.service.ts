@@ -4,6 +4,7 @@ import {
   Categories,
   JSONListingRawData,
   ListingModel,
+  Locations,
   RoomInfo,
   RoomInfoBasic,
 } from "../model/listing.model";
@@ -84,6 +85,25 @@ class ListingService {
     if (!parsed) return [];
     const categories = parsed.categories ?? [];
     return categories;
+  }
+
+  /**
+   * @returns A list of categories
+   */
+  async getLocations(): Promise<Locations[]> {
+    const parsed = await this.parseRawJson();
+    if (!parsed) return [];
+    const locations: Locations[] = parsed.data.map(i => {
+      return {
+        city: i.info.location.city,
+        country: i.info.location.country.title,
+      };
+    });
+
+    /** Create a unique array of objects from locations */
+    const uniqueLocations = (a: any) => [...new Set(a.map((o: any) => JSON.stringify(o)))].map((s: any) => JSON.parse(s))
+    const unique: Locations[] = uniqueLocations(locations);
+    return unique;
   }
 
   /** Build the URL route for the room listing item */

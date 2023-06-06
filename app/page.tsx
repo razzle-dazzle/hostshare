@@ -6,7 +6,7 @@ import { ApiResponse } from "./service/http/api.interface";
 
 async function getData(): Promise<ApiResponse<RoomInfoBasic[]>> {
   const res = await fetch("http://localhost:3000/api/listings", {
-    // cache: "no-store",
+    cache: "force-cache",
   });
 
   if (!res.ok) {

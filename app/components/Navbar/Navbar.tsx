@@ -6,7 +6,6 @@ import ThemeSwitch from "../ThemeSwitch";
 import { useTheme } from "@wits/next-themes";
 import { SearchWidget } from './SearchWidget';
 import { ProfileMenu } from './ProfileMenu';
-import GuestSelector from './GuestSelector';
 
 export default function Navbar() {
   return (
@@ -27,11 +26,8 @@ export default function Navbar() {
           </div>
         </Link>
         <SearchWidget></SearchWidget>
-        {/* <GuestSelector></GuestSelector> */}
+        
         <div className="flex flex-grow flex-shrink-0 flex-row justify-center md:justify-end items-center max-w-full gap-2.5">
-          {/* <div className="text-black dark:text-white font-semibold">
-            <Link href="#">Share your home</Link>
-          </div> */}
           <ThemeSwitch></ThemeSwitch>
           <ProfileMenu></ProfileMenu>
         </div>

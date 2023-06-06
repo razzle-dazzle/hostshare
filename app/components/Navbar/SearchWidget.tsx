@@ -34,7 +34,7 @@ export function SearchWidget() {
             <NavigationMenuTrigger className='rounded-3xl'>Search City</NavigationMenuTrigger>
             <NavigationMenuContent>
               <div className='w-[400px] p-4 md:w-[500px] lg:w-[600px] h-[480px]'>
-                <h3 className='text-lg font-semibold mb-4'>Search location</h3>
+                <h3 className='text-lg font-semibold mb-4'>Search</h3>
                 <LocationSearch></LocationSearch>
               </div>
             </NavigationMenuContent>
