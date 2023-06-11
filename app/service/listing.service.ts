@@ -17,28 +17,30 @@ class ListingService {
    * Inspired by @url https://vercel.com/guides/loading-static-file-nextjs-api-route
    */
   private async parseRawJson(): Promise<JSONListingRawData | null> {
-    // Get the absolute path of the json directory
-    const jsonDirectory = path.join(process.cwd(), "public", "json");
-    // const jsonDirectory = "/json"; // inside public folder
-    // Read json data file
-    // const fileContents = readFileSync('listings.json', "utf8").toString();
-    const base = jsonDirectory.substring(0, 1) === '/' ? jsonDirectory : `/${jsonDirectory}`;
+    // // Get the absolute path of the json directory
+    // const jsonDirectory = path.join(process.cwd(), "public", "json");
+    // // const jsonDirectory = "/json"; // inside public folder
+    // // Read json data file
+    // // const fileContents = readFileSync('listings.json', "utf8").toString();
+    // const base = jsonDirectory.substring(0, 1) === '/' ? jsonDirectory : `/${jsonDirectory}`;
 
-    let fileContents = '';
-    try {
-      fileContents = await fs.readFile(
-        `${base}/listings.json`,
-        "utf8"
-      );
+    // let fileContents = '';
+    // try {
+    //   fileContents = await fs.readFile(
+    //     `${base}/listings.json`,
+    //     "utf8"
+    //   );
       
-    } catch (error) {
-      console.warn(error);
-    }
+    // } catch (error) {
+    //   console.warn(error);
+    // }
 
 
-    if (!fileContents) return null;
+    // if (!fileContents) return null;
 
-    // parse file
+    const fileContents = fs.readFile('/json/listings.json').toString();
+
+    // parse raw file
     let parsed: JSONListingRawData | null = null;
     try {
       parsed = JSON.parse(fileContents);
