@@ -22,9 +22,10 @@ class ListingService {
     // const jsonDirectory = "/json"; // inside public folder
     // Read json data file
     // const fileContents = readFileSync('listings.json', "utf8").toString();
+    const base = jsonDirectory.substring(0, 1) === '/' ? jsonDirectory : `/${jsonDirectory}`;
 
     const fileContents = await fs.readFile(
-      jsonDirectory + "/listings.json",
+      `${base}/listings.json`,
       "utf8"
     );
     // parse file
@@ -33,6 +34,7 @@ class ListingService {
       parsed = JSON.parse(fileContents);
       return parsed;
     } catch (error) {
+      console.warn(error);
       return null;
     }
   }
