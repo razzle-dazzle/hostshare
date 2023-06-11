@@ -7,17 +7,17 @@ import { endpoint } from '@/app/service/listing.service';
 
 
 // Maybe try this: https://stackoverflow.com/questions/71446535/why-cant-i-read-a-json-file-on-vercel-when-using-next-js-ssr
-export async function generateStaticParams() {
-  const rooms: ApiResponse<RoomInfoBasic[]> = await fetch(
-    endpoint + "/api/listings"
-  ).then((res) => res.json()).catch(e => {
-    console.warn(e);
-  });
+// export async function generateStaticParams() {
+//   const rooms: ApiResponse<RoomInfoBasic[]> = await fetch(
+//     endpoint + "/api/listings"
+//   ).then((res) => res.json()).catch(e => {
+//     console.warn(e);
+//   });
   
-  return (rooms ?? []).data.map((room) => ({
-    id: room.id,
-  }));
-}
+//   return (rooms ?? []).data.map((room) => ({
+//     id: room.id,
+//   }));
+// }
 
 async function getData(id: string): Promise<ApiResponse<RoomInfo>> {
   const res = await fetch(endpoint + `/api/listings/${id}?id=${id}`);
