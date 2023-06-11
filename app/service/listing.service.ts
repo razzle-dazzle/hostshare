@@ -38,17 +38,22 @@ class ListingService {
 
     // if (!fileContents) return null;
 
-    const fileContents = fs.readFile('/json/listings.json').toString();
+    // const fileContents = fs.readFile('/json/listings.json').toString();
+    const fileContents = await import('./listings.json').then((res) => res.default).catch((err) => {
+      console.warn(err);
+      console.log('Cannot read JSON file!');
+    });
+    return fileContents as JSONListingRawData;
 
-    // parse raw file
-    let parsed: JSONListingRawData | null = null;
-    try {
-      parsed = JSON.parse(fileContents);
-      return parsed;
-    } catch (error) {
-      console.warn(error);
-      return null;
-    }
+    // // parse raw file
+    // let parsed: JSONListingRawData | null = null;
+    // try {
+    //   parsed = JSON.parse(fileContents.toString());
+    //   return parsed;
+    // } catch (error) {
+    //   console.warn(error);
+    //   return null;
+    // }
   }
 
   /**
