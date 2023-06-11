@@ -10,9 +10,11 @@ import { endpoint } from '@/app/service/listing.service';
 export async function generateStaticParams() {
   const rooms: ApiResponse<RoomInfoBasic[]> = await fetch(
     endpoint + "/api/listings"
-  ).then((res) => res.json());
-
-  return rooms.data.map((room) => ({
+  ).then((res) => res.json()).catch(e => {
+    console.warn(e);
+  });
+  
+  return (rooms ?? []).data.map((room) => ({
     id: room.id,
   }));
 }

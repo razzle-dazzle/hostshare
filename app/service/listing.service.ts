@@ -24,10 +24,20 @@ class ListingService {
     // const fileContents = readFileSync('listings.json', "utf8").toString();
     const base = jsonDirectory.substring(0, 1) === '/' ? jsonDirectory : `/${jsonDirectory}`;
 
-    const fileContents = await fs.readFile(
-      `${base}/listings.json`,
-      "utf8"
-    );
+    let fileContents = '';
+    try {
+      fileContents = await fs.readFile(
+        `${base}/listings.json`,
+        "utf8"
+      );
+      
+    } catch (error) {
+      console.warn(error);
+    }
+
+
+    if (!fileContents) return null;
+
     // parse file
     let parsed: JSONListingRawData | null = null;
     try {
