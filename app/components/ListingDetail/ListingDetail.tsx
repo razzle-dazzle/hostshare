@@ -31,7 +31,7 @@ const ListingDetail = ({ data }: Props) => {
             <Lorem key={key} />
           ))}
         </div>
-        <div className="w-[96vw] m-auto md:m-[initial] fixed md:relative md:w-[33%] md:ml-[8%] md:mr-0 bottom-0 md:bottom-auto left-0 md:left-auto right-0 md:right-auto z-[10000] md:z-[10] bg-white md:bg-transparent">
+        <div className="w-[96vw] m-auto md:m-[initial] fixed md:relative md:w-[33%] md:ml-[8%] md:mr-0 bottom-0 md:bottom-auto left-0 md:left-auto right-0 md:right-auto z-[10000] md:z-[10] bg-white dark:bg-transparent md:bg-transparent">
           <ReserveWidget data={data} />
         </div>
 

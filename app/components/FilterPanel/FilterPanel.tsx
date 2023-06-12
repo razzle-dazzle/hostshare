@@ -27,7 +27,7 @@ const FilterPanel = ({ categories }: Props) => {
 const CategoryItem = (category: Categories) => {
   const src = `/icons/${category.type}.jpg`;
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full my-3 mb-2.5 py-1 transition-colors cursor-pointer text-[#171717]">
+    <div className="flex flex-col items-center justify-center w-full h-full my-1 md:my-3 md:mb-2.5 py-1 transition-colors cursor-pointer text-[#171717]">
       <Image src={src} alt={category.type} width={24} height={24} />
       <p className="whitespace-nowrap text-black dark:text-white m-0 text-xs font-semibold">{category.title}</p>
     </div>

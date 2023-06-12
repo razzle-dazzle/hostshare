@@ -45,7 +45,7 @@ export function SearchWidget() {
           <NavigationMenuList>
             {/* Location Search */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="rounded-3xl">
+              <NavigationMenuTrigger className="rounded-3xl px-2 md:px-4">
                 Search
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -60,7 +60,7 @@ export function SearchWidget() {
 
             {/* Date Selection */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="rounded-3xl">
+              <NavigationMenuTrigger className="rounded-3xl px-2 md:px-4">
                 {format(fromTo.from, "MMM d")} - {format(fromTo.to, "MMM d")}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -73,7 +73,7 @@ export function SearchWidget() {
 
             {/* Number of Guests */}
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="rounded-3xl">
+              <NavigationMenuTrigger className="rounded-3xl px-2 md:px-4">
                 Guests
               </NavigationMenuTrigger>
               <NavigationMenuContent>
@@ -84,6 +84,7 @@ export function SearchWidget() {
               </NavigationMenuContent>
             </NavigationMenuItem>
 
+            {/* This is the search on desktop only */}
             <NavigationMenuItem className="hidden md:block">
               <Link href="/results" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -100,10 +101,11 @@ export function SearchWidget() {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
+      {/* This is the search button on mobile only */}
       <div className="md:hidden mt-2 flex justify-end">
         <Button
           variant="destructive"
-          className="rounded-full flex gap-1"
+          className="rounded-3xl flex gap-1 w-full"
           onClick={(e) => handleSearch(e)}
         >
           <span className='font-semibold text-md'>Search</span> <Search className="h-4 w-4" />
