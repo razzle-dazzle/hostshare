@@ -1,5 +1,10 @@
 # Hostshare Engineer Candidate Project
 
+### The [DEMO is here](https://hostshare-darryl-october.vercel.app/).
+
+---
+
+
 This is a developer candidate project for [Hostshare](https://www.hostshare.co/), built by Darryl October.
 
 The original build only too 2 days! A relatively short anount of time, given the number of features, screens and components. Even though I have 'completed' it, there are still a few things I would like to improve:
@@ -120,3 +125,19 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The project is deployed to Vercel. Merges to the `main` branch will automatically build and deploy a new version of the app.
 
+## Installing Shadcn components
+
+> [Shadcn UI Library](https://ui.shadcn.com/docs/components/accordion)
+
+Example:
+
+```bash
+
+npx shadcn-ui add accordion
+
+# Where would you like to install the component(s)?
+
+# Type:
+./app/components/Shadcn/
+
+```
