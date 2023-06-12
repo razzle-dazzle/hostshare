@@ -4,6 +4,7 @@ import { RoomInfo, RoomInfoBasic } from "@/app/model/listing.model";
 import React from "react";
 import { ListingDetail } from "@/app/components/ListingDetail";
 import { endpoint } from '@/app/service/listing.service';
+import ListingService from "@/app/service/listing.service";
 
 
 // Maybe try this: https://stackoverflow.com/questions/71446535/why-cant-i-read-a-json-file-on-vercel-when-using-next-js-ssr
@@ -19,21 +20,26 @@ import { endpoint } from '@/app/service/listing.service';
 //   }));
 // }
 
-async function getData(id: string): Promise<ApiResponse<RoomInfo>> {
-  const res = await fetch(endpoint + `/api/listings/${id}?id=${id}`);
-
-  if (!res.ok) {
-    // Activate the closest `error.ts` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
+async function getData(id: string): Promise<RoomInfo | null> {
+  const data = await ListingService.getRoomById(id);
+  return data;
 }
+
+// async function getData(id: string): Promise<ApiResponse<RoomInfo>> {
+//   const res = await fetch(endpoint + `/api/listings/${id}?id=${id}`);
+
+//   if (!res.ok) {
+//     // Activate the closest `error.ts` Error Boundary
+//     throw new Error("Failed to fetch data");
+//   }
+
+//   return res.json();
+// }
 
 export default async function RoomPage({ params }: { params: { id: string } }) {
   const { id } = params;
-  const resp = await getData(id);
-  const { data } = resp;
+  const data = await getData(id);
+  // const { data } = resp;
 
   if (!data) {
     notFound();
