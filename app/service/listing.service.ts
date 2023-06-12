@@ -1,5 +1,5 @@
-import path from "path";
-import { promises as fs, readFileSync } from "fs";
+// import path from "path";
+// import { promises as fs, readFileSync } from "fs";
 import {
   Categories,
   JSONListingRawData,
@@ -12,48 +12,16 @@ import {
 export const endpoint = process.env.NEXT_PUBLIC_ENDPOINT ?? "http://localhost:3000";
 
 class ListingService {
+
   /**
-   * Load and parse a local JSON file
-   * Inspired by @url https://vercel.com/guides/loading-static-file-nextjs-api-route
+   * Load a local JSON file
    */
   private async parseRawJson(): Promise<JSONListingRawData | null> {
-    // // Get the absolute path of the json directory
-    // const jsonDirectory = path.join(process.cwd(), "public", "json");
-    // // const jsonDirectory = "/json"; // inside public folder
-    // // Read json data file
-    // // const fileContents = readFileSync('listings.json', "utf8").toString();
-    // const base = jsonDirectory.substring(0, 1) === '/' ? jsonDirectory : `/${jsonDirectory}`;
-
-    // let fileContents = '';
-    // try {
-    //   fileContents = await fs.readFile(
-    //     `${base}/listings.json`,
-    //     "utf8"
-    //   );
-      
-    // } catch (error) {
-    //   console.warn(error);
-    // }
-
-
-    // if (!fileContents) return null;
-
-    // const fileContents = fs.readFile('/json/listings.json').toString();
     const fileContents = await import('./listings.json').then((res) => res.default).catch((err) => {
       console.warn(err);
-      console.log('Cannot read JSON file!');
+      throw new Error('Cannot read JSON file!');
     });
     return fileContents as JSONListingRawData;
-
-    // // parse raw file
-    // let parsed: JSONListingRawData | null = null;
-    // try {
-    //   parsed = JSON.parse(fileContents.toString());
-    //   return parsed;
-    // } catch (error) {
-    //   console.warn(error);
-    //   return null;
-    // }
   }
 
   /**
@@ -62,25 +30,24 @@ class ListingService {
   async getRooms(): Promise<RoomInfoBasic[]> {
     const parsed = await this.parseRawJson();
     if (parsed) {
-      // const rooms = parsed.data.map(room => room.info);
-      const rooms = this.getRoomInfoBasic(parsed.data);
       // reduce payload - the listing cards only require a subset of the room data
-
+      const rooms = this.getRoomInfoBasic(parsed.data);
       return rooms;
     }
     return [];
   }
 
+  /**
+   * Converts listing data into a more simple object, since the frontend doesn't require all the data
+   * @param rooms 
+   * @returns 
+   */
   private getRoomInfoBasic(rooms: ListingModel[]): RoomInfoBasic[] {
     const basic = rooms
       .map((room) => room.info)
       .map((room) => {
         return {
           id: room.id,
-          // images: {
-          //   ...room.images,
-          //   data: room.images.data.slice(0, 1), // Note: reduce the payload to just one image!
-          // },
           mainImage: room.mainImage,
           location: room.location,
           ratings: room.ratings,

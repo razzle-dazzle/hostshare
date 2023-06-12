@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import ThemeSwitch from "../ThemeSwitch";
-import { useTheme } from "@wits/next-themes";
 import { SearchWidget } from "./SearchWidget";
 import { ProfileMenu } from "./ProfileMenu";
 

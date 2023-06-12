@@ -26,7 +26,6 @@ const LocationSearch = () => {
 
   const handleOnSearch = (string: string, results: any) => {
     console.log("Handle on search here");
-    // console.log(string, results);
   };
 
   const handleOnSelect = (item: any) => {

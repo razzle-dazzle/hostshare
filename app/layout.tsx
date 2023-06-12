@@ -1,15 +1,45 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
 import { ServerThemeProvider } from "@wits/next-themes";
 import { siteMetadata } from "./data/siteMetaData";
 import { PropsWithChildren } from "react";
 import Navbar from "./components/Navbar";
+import type { Metadata } from 'next';
+import { WEBSITE_URL } from '@/lib/utils';
+// import { Inter } from "next/font/google";
+// const inter = Inter({ subsets: ["latin"] });
 
-const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "Hostshare",
-  description: "Hostshare Engineering Candidate Project",
+export const metadata: Metadata = {
+  title: {
+    default: "Hostshare",
+    template: "%s | Hostshare",
+  },
+  description: "Hostshare Engineering Candidate Project - by Darryl October",
+  
+  openGraph: {
+    title: "Hostshare",
+    description: "Hostshare Engineering Candidate Project - by Darryl October",
+    url: WEBSITE_URL,
+    siteName: "Hostshare",
+    locale: "en-US",
+    type: "website",
+    images: [
+      {
+        url: 'https://hostshare-darryl-october.vercel.app/hostshare-logo-green.png',
+      },
+    ],
+  },
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {

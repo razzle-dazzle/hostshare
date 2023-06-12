@@ -41,7 +41,6 @@ const HostingInfo = ({ data }: Props) => {
                 aria-hidden="true"
                 role="presentation"
                 focusable="false"
-                // style="display: block; height: 24px; width: 24px;"
               >
                 <linearGradient
                   id="a"
@@ -67,23 +66,6 @@ const HostingInfo = ({ data }: Props) => {
           )}
         </div>
       </div>
-
-      {/* <div className='flex flex-col justify-between items-center gap-2'>
-        <div className='flex gap-2'>
-        <Image
-            src={data.host.avatar.url}
-            alt={"Host image"}
-            fill
-            style={{
-              objectFit: "cover",
-              borderRadius: '50%',
-              aspectRatio: data.host.avatar.aspectRatio,
-            }}
-            // width={56}
-            // height={56}
-          />
-        </div>
-      </div> */}
     </section>
   );
 };
